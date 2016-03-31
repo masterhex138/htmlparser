@@ -8,11 +8,11 @@ import java.io.InputStreamReader;
 public class Converter {
 
     //EXAMPLE convert("D:\\converting\\input.doc","D:\\converting","html")
-    public String windowsConvert(String inputFileName, String outputFileName,String outputPath, String convertTo) {
+    public String windowsConvert(String inputFilePath, String outputFileName,String outputPath, String convertTo) {
         String s = null;
         try {
             // Execute command
-            String command = "\"C:\\Program Files (x86)\\LibreOffice 5\\program\\soffice.exe\" --headless --convert-to "+convertTo+" "+outputFileName+" --outdir \""+outputPath+"\" \""+inputFileName+"\"";
+            String command = "\"C:\\Program Files (x86)\\LibreOffice 5\\program\\soffice.exe\" --headless --convert-to "+convertTo+" --outdir \""+outputPath+"\" \""+inputFilePath+"\"";
             Process p = Runtime.getRuntime().exec(command);
             // Get output stream to write from it
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -25,8 +25,10 @@ public class Converter {
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);
             }
+            
+            
         } catch (IOException e) {
         }
-        return outputPath+File.pathSeparator+outputFileName;
+        return outputPath+File.separator+outputFileName;
     }
 }
