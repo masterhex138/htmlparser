@@ -5,13 +5,8 @@
  */
 package htmldocparser.parser;
 
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.Level;
@@ -20,31 +15,26 @@ import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Entities.EscapeMode;
 import org.jsoup.select.Elements;
 
 public class HTMLParser {
 
     private String style;
 
-    
-    public void test(String htmlPath){
-        try {
-            String text = new String(Files.readAllBytes(Paths.get(htmlPath)), StandardCharsets.UTF_8);
+    public void test(String htmlPath) {
+            //String text = new String(Files.readAllBytes(Paths.get(htmlPath)), StandardCharsets.UTF_8);
+           /* String text = readFile(htmlPath);
             System.out.println(text);
-            FileUtils.writeByteArrayToFile(new File(htmlPath), text.getBytes("UTF-8"));
-            
-        } catch (IOException ex) {
-            Logger.getLogger(HTMLParser.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            FileUtils.writeByteArrayToFile(new File(htmlPath), text.getBytes("Cp1251"));*/
+
+
     }
-    
+
     public void parse(String htmlPath) {
         try {
-            String text;
-            text = new String(Files.readAllBytes(Paths.get(htmlPath)), StandardCharsets.UTF_8);
-
-            
+           // String text = readFile(htmlPath);
+            String text = new String(Files.readAllBytes(Paths.get(htmlPath)), "Cp1251");
+            //System.out.println(text);
             Document doc = Jsoup.parseBodyFragment(text);
 
             //Element el = doc.select("style").first();
@@ -88,8 +78,8 @@ public class HTMLParser {
              BufferedWriter bw = new BufferedWriter(fw);
              bw.write(result);
              bw.close();*/
-            System.out.println("doc " + doc.html());
-            FileUtils.writeByteArrayToFile(new File(htmlPath), doc.html().getBytes("UTF-8"));
+            //System.out.println("doc " + doc.html());
+            FileUtils.writeByteArrayToFile(new File(htmlPath), doc.html().getBytes("Cp1251"));
         } catch (IOException ex) {
             Logger.getLogger(HTMLParser.class.getName()).log(Level.SEVERE, null, ex);
         }

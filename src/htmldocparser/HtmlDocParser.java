@@ -11,11 +11,13 @@ public class HtmlDocParser {
 
     public static void main(String[] args) {
         Converter converter = new Converter();
-        converter.windowsConvert("D:\\converting\\input.doc","input.odt","D:\\converting","odt");
-        String htmlDocPath = converter.windowsConvert("D:\\converting\\input.odt","input.html","D:\\converting","html");
+        //converter.windowsConvert("D:\\converting\\input2.doc","input2.odt","D:\\converting","odt");
+        //String htmlDocPath = converter.windowsConvert("D:\\converting","input.doc","D:\\converting","html");
+        String htmlDocPath = converter.poiDocToHtml("D:\\converting", "input.doc", "D:\\converting");
+        //converter.windowsConvert("D:\\converting","input.html","D:\\converting","docx");
         HTMLParser htmlParser = new HTMLParser();
-        htmlParser.test(htmlDocPath);
-   
+        htmlParser.parse(htmlDocPath);
+        converter.windowsConvert("D:\\converting","input.html","D:\\converting","docx");
     }
     
 }
