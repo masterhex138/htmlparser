@@ -33,7 +33,7 @@ public class HTMLParser {
     public void parse(String htmlPath) {
         try {
            // String text = readFile(htmlPath);
-            String text = new String(Files.readAllBytes(Paths.get(htmlPath)), "Cp1251");
+            String text = new String(Files.readAllBytes(Paths.get(htmlPath)), "UTF-8");
             //System.out.println(text);
             Document doc = Jsoup.parseBodyFragment(text);
 
@@ -52,7 +52,7 @@ public class HTMLParser {
             }
             Elements images = doc.select("img");
             int i = 0;
-            for (Element image : images) {
+            /*for (Element image : images) {
                 //System.out.println("img :"+image.attr("src"));
                 String base64Image = image.attr("src").split(",")[1];
                 byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
@@ -62,7 +62,7 @@ public class HTMLParser {
 
                 //Files.write(Paths.get(imagePath), imageBytes,new OpenOption() {});
                 i++;
-            }
+            }*/
             //System.out.println(doc.html());
 
             /*File file = new File(htmlPath);
@@ -79,7 +79,7 @@ public class HTMLParser {
              bw.write(result);
              bw.close();*/
             //System.out.println("doc " + doc.html());
-            FileUtils.writeByteArrayToFile(new File(htmlPath), doc.html().getBytes("Cp1251"));
+            FileUtils.writeByteArrayToFile(new File(htmlPath), doc.html().getBytes("UTF-8"));
         } catch (IOException ex) {
             Logger.getLogger(HTMLParser.class.getName()).log(Level.SEVERE, null, ex);
         }

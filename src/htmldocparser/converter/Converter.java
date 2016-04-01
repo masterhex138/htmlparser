@@ -86,6 +86,7 @@ public class Converter {
                     Picture pic = (Picture) pics.get(i);
                     try {
                         pic.writeImageContent(new FileOutputStream("D:\\44444\\" + pic.suggestFullFileName()));
+                        
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -108,7 +109,7 @@ public class Converter {
             serializer.transform(domSource, streamResult);
             out.close();
             ///////////////////////////////////////
-            File file = new File(outputPath+outputfileName+".html");
+            File file = new File(outputPath+File.separator+outputfileName+".html");
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
@@ -133,7 +134,7 @@ public class Converter {
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Converter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return outputPath+outputfileName+".html";
+        return outputPath+File.separator+outputfileName+".html";
     }
     
     
